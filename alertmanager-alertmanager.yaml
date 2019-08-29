@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: Alertmanager
+metadata:
+  labels:
+    alertmanager: main
+  name: main
+  namespace: monitoring
+spec:
+  baseImage: quay.io/prometheus/alertmanager
+  command: ["/bin/sh",'-c','/bin/alertmanager']
+  nodeSelector:
+    beta.kubernetes.io/os: linux
+  replicas: 4
+  serviceAccountName: alertmanager-main
+  version: v0.15.3
